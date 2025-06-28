@@ -78,7 +78,7 @@ export default function DetalleOrdenCompraPage() {
                 <tr key={det.NroOrdenC + "-" + det.CodMedicamento} className="hover:bg-purple-50 transition-colors">
                   <td className="p-3 border-b border-gray-100">{det.NroOrdenC}</td>
                   <td className="p-3 border-b border-gray-100">{det.CodMedicamento}</td>
-                  <td className="p-3 border-b border-gray-100">{det.cantidad}</td>
+                  <td className="p-3 border-b border-gray-100">{det.cantidad !== undefined && det.cantidad !== null && !isNaN(Number(det.cantidad)) ? det.cantidad : 0}</td>
                   <td className="p-3 border-b border-gray-100">{det.precio !== undefined && det.precio !== null && !isNaN(Number(det.precio)) ? `S/ ${Number(det.precio).toFixed(2)}` : 'S/ 0.00'}</td>
                   <td className="p-3 border-b border-gray-100 flex gap-2">
                     <button

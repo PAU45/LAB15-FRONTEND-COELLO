@@ -45,7 +45,9 @@ export default function EditarDetalleOrdenCompra() {
           ...form,
           cantidad: form.cantidad === "" ? 0 : parseInt(form.cantidad),
           precio: form.precio === "" ? 0 : parseFloat(form.precio),
-          montouni: form.montouni === "" ? 0 : parseFloat(form.montouni)
+          montouni: form.montouni === "" ? 0 : parseFloat(form.montouni),
+          NroOrdenC: NroOrdenC === undefined || NroOrdenC === null || NroOrdenC === "" ? null : parseInt(NroOrdenC),
+          CodMedicamento: CodMedicamento === undefined || CodMedicamento === null || CodMedicamento === "" ? null : parseInt(CodMedicamento)
         }),
       });
       if (res.ok) {
