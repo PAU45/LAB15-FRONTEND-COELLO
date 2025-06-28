@@ -78,7 +78,7 @@ export default function OrdenCompraPage() {
                   <td className="p-3">{ord.fechaEmision?.slice(0, 10)}</td>
                   <td className="p-3">{ord.Situacion}</td>
                   <td className="p-3">
-                    {typeof ord.Total === 'number' ? `S/ ${ord.Total.toFixed(2)}` : ''}
+                    {typeof ord.Total === 'number' ? `S/ ${ord.Total.toFixed(2)}` : 'N/A'}
                   </td>
                   <td className="p-3 flex flex-col sm:flex-row gap-2 justify-center">
                     <button

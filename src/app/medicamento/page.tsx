@@ -95,10 +95,10 @@ export default function MedicamentoPage() {
                   <td className="p-3">{med.Presentacion}</td>
                   <td className="p-3">{med.stock}</td>
                   <td className="p-3">
-                    {typeof med.precioVentaUni === 'number' ? `S/ ${med.precioVentaUni.toFixed(2)}` : ''}
+                    {typeof med.precioVentaUni === 'number' ? `S/ ${med.precioVentaUni.toFixed(2)}` : 'N/A'}
                   </td>
                   <td className="p-3">
-                    {typeof med.precioVentaPres === 'number' ? `S/ ${med.precioVentaPres.toFixed(2)}` : ''}
+                    {typeof med.precioVentaPres === 'number' ? `S/ ${med.precioVentaPres.toFixed(2)}` : 'N/A'}
                   </td>
                   <td className="p-3">{med.CodTipoMed}</td>
                   <td className="p-3">{med.CodEspec}</td>
