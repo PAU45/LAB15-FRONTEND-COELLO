@@ -45,8 +45,8 @@ export default function EditarOrdenCompra() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          Total: parseFloat(form.Total),
-          CodLab: parseInt(form.CodLab)
+          Total: form.Total === "" ? 0 : parseFloat(form.Total),
+          CodLab: form.CodLab === "" ? null : parseInt(form.CodLab)
         }),
       });
       if (res.ok) {
