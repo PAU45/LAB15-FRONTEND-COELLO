@@ -11,8 +11,8 @@ export default function MedicamentoPage() {
     fechaVencimiento?: string;
     Presentacion?: string;
     stock?: number;
-    precioVentaUni?: number;
-    precioVentaPres?: number;
+    precioVentaUni?: number | null; // Asegúrate de incluir `null` como posible valor
+    precioVentaPres?: number | null; // Asegúrate de incluir `null` como posible valor
     CodTipoMed?: number;
     CodEspec?: number;
     Marca?: string;
@@ -26,10 +26,10 @@ export default function MedicamentoPage() {
     try {
       const res = await fetch("https://lab15-backend-coello.onrender.com/api/medicamentos");
       if (!res.ok) throw new Error("Error al obtener medicamentos");
-      const data: Medicamento[] = await res.json();
+      const data = await res.json();
 
       // Convertir valores de precioVentaUni y precioVentaPres a números
-      const medicamentosProcesados = data.map((med) => ({
+      const medicamentosProcesados: Medicamento[] = data.map((med: Medicamento) => ({
         ...med,
         precioVentaUni: med.precioVentaUni ? parseFloat(String(med.precioVentaUni)) : null,
         precioVentaPres: med.precioVentaPres ? parseFloat(String(med.precioVentaPres)) : null,
