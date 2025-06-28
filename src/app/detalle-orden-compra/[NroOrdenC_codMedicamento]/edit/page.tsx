@@ -5,7 +5,17 @@ import { useState, useEffect } from "react";
 
 export default function EditarDetalleOrdenCompra() {
   const router = useRouter();
-  const { NroOrdenC, CodMedicamento } = useParams();
+  // Extraer ambos parámetros desde la ruta dinámica [nroOrdenC_codMedicamento]
+  const params = useParams();
+  let NroOrdenC = "";
+  let CodMedicamento = "";
+  if (params.nroOrdenC_codMedicamento) {
+    const parts = Array.isArray(params.nroOrdenC_codMedicamento)
+      ? params.nroOrdenC_codMedicamento[0].split("-")
+      : params.nroOrdenC_codMedicamento.split("-");
+    NroOrdenC = parts[0];
+    CodMedicamento = parts[1];
+  }
   const [form, setForm] = useState({
     descripcion: "",
     cantidad: "",
@@ -15,6 +25,7 @@ export default function EditarDetalleOrdenCompra() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!NroOrdenC || !CodMedicamento) return;
     const fetchDetalle = async () => {
       try {
         const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`);
@@ -46,8 +57,8 @@ export default function EditarDetalleOrdenCompra() {
           cantidad: form.cantidad === "" ? 0 : parseInt(form.cantidad),
           precio: form.precio === "" ? 0 : parseFloat(form.precio),
           montouni: form.montouni === "" ? 0 : parseFloat(form.montouni),
-          NroOrdenC: Array.isArray(NroOrdenC) ? parseInt(NroOrdenC[0]) : (NroOrdenC === undefined || NroOrdenC === null || NroOrdenC === "" ? null : parseInt(NroOrdenC)),
-          CodMedicamento: Array.isArray(CodMedicamento) ? parseInt(CodMedicamento[0]) : (CodMedicamento === undefined || CodMedicamento === null || CodMedicamento === "" ? null : parseInt(CodMedicamento))
+          NroOrdenC: NroOrdenC === undefined || NroOrdenC === null || NroOrdenC === "" ? null : parseInt(NroOrdenC),
+          CodMedicamento: CodMedicamento === undefined || CodMedicamento === null || CodMedicamento === "" ? null : parseInt(CodMedicamento)
         }),
       });
       if (res.ok) {
