@@ -34,14 +34,16 @@ export default function EditarDetalleOrdenVta() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-vta/${NroOrdenVta}/${CodMedicamento}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          cantidadRequerida: parseInt(form.cantidadRequerida)
-        }),
-      });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-vta/${NroOrdenVta}/${CodMedicamento}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...form,
+            cantidadRequerida: parseInt(form.cantidadRequerida)
+          }),
+        }
+      );
       if (res.ok) {
         alert("Detalle actualizado correctamente");
         router.push("/detalle-orden-vta");
