@@ -43,9 +43,9 @@ export default function EditarDetalleOrdenCompra() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          cantidad: parseInt(form.cantidad),
-          precio: parseFloat(form.precio),
-          montouni: parseFloat(form.montouni)
+          cantidad: form.cantidad === "" ? 0 : parseInt(form.cantidad),
+          precio: form.precio === "" ? 0 : parseFloat(form.precio),
+          montouni: form.montouni === "" ? 0 : parseFloat(form.montouni)
         }),
       });
       if (res.ok) {

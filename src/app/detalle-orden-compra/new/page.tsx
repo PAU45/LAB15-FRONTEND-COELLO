@@ -19,11 +19,11 @@ export default function CrearDetalleOrdenCompra() {
     e.preventDefault();
     await createDetalleOrdenCompra({
       ...form,
-      NroOrdenC: parseInt(form.NroOrdenC),
-      CodMedicamento: parseInt(form.CodMedicamento),
-      cantidad: parseInt(form.cantidad),
-      precio: parseFloat(form.precio),
-      montouni: parseFloat(form.montouni)
+      NroOrdenC: form.NroOrdenC === "" ? 0 : parseInt(form.NroOrdenC),
+      CodMedicamento: form.CodMedicamento === "" ? 0 : parseInt(form.CodMedicamento),
+      cantidad: form.cantidad === "" ? 0 : parseInt(form.cantidad),
+      precio: form.precio === "" ? 0 : parseFloat(form.precio),
+      montouni: form.montouni === "" ? 0 : parseFloat(form.montouni)
     });
     router.push('/detalle-orden-compra');
   };
