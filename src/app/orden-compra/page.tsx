@@ -78,7 +78,7 @@ export default function OrdenCompraPage() {
                   <td className="p-3">{ord.fechaEmision?.slice(0, 10)}</td>
                   <td className="p-3">{ord.Situacion}</td>
                   <td className="p-3">
-                    {typeof ord.Total === 'number' && !isNaN(ord.Total) && ord.Total > 0
+                    {typeof ord.Total === 'number' && !isNaN(ord.Total)
                       ? `S/ ${ord.Total.toFixed(2)}`
                       : ''}
                   </td>
