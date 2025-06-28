@@ -4,8 +4,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LaboratorioPage() {
-  const [laboratorios, setLaboratorios] = useState([]);
-  const [error, setError] = useState(null);
+  type Laboratorio = {
+    CodLab: number;
+    razonSocial: string;
+    direccion: string;
+    telefono: string;
+    email: string;
+    contacto: string;
+  };
+  const [laboratorios, setLaboratorios] = useState<Laboratorio[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchLaboratorios = async () => {
@@ -19,7 +27,7 @@ export default function LaboratorioPage() {
     }
   };
 
-  const eliminarLaboratorio = async (CodLab) => {
+  const eliminarLaboratorio = async (CodLab: number) => {
     if (!confirm("¿Estás seguro de eliminar este laboratorio?")) return;
     try {
       const res = await fetch(`https://lab15-backend-coello.onrender.com/api/laboratorio/${CodLab}`, { method: "DELETE" });

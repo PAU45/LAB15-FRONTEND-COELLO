@@ -17,7 +17,7 @@ export default function EditarDetalleOrdenCompra() {
   useEffect(() => {
     const fetchDetalle = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`);
+        const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`);
         if (!res.ok) throw new Error("Error al obtener el detalle");
         const data = await res.json();
         setForm({
@@ -35,10 +35,10 @@ export default function EditarDetalleOrdenCompra() {
     fetchDetalle();
   }, [NroOrdenC, CodMedicamento, router]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

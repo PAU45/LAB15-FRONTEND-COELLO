@@ -4,8 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function OrdenCompraPage() {
-  const [ordenes, setOrdenes] = useState([]);
-  const [error, setError] = useState(null);
+  type OrdenCompra = {
+    NroOrdenC: number;
+    fechaEmision?: string;
+    Situacion?: string;
+    Total?: number;
+  };
+  const [ordenes, setOrdenes] = useState<OrdenCompra[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchOrdenes = async () => {
@@ -19,7 +25,7 @@ export default function OrdenCompraPage() {
     }
   };
 
-  const eliminarOrden = async (NroOrdenC) => {
+  const eliminarOrden = async (NroOrdenC: number) => {
     if (!confirm("¿Estás seguro de eliminar esta orden?")) return;
     try {
       const res = await fetch(`https://lab15-backend-coello.onrender.com/api/orden-compra/${NroOrdenC}`, { method: "DELETE" });

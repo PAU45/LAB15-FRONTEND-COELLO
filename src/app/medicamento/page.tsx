@@ -4,8 +4,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function MedicamentoPage() {
-  const [medicamentos, setMedicamentos] = useState([]);
-  const [error, setError] = useState(null);
+  type Medicamento = {
+    CodMedicamento: number;
+    descripcionMed: string;
+    fechaFabricacion?: string;
+    fechaVencimiento?: string;
+    Presentacion?: string;
+    stock?: number;
+    precioVentaUni?: number;
+    precioVentaPres?: number;
+    CodTipoMed?: number;
+    CodEspec?: number;
+    Marca?: string;
+  };
+  const [medicamentos, setMedicamentos] = useState<Medicamento[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchMedicamentos = async () => {
@@ -19,7 +32,7 @@ export default function MedicamentoPage() {
     }
   };
 
-  const eliminarMedicamento = async (CodMedicamento) => {
+  const eliminarMedicamento = async (CodMedicamento: number) => {
     if (!confirm("¿Estás seguro de eliminar este medicamento?")) return;
     try {
       const res = await fetch(`https://lab15-backend-coello.onrender.com/api/medicamentos/${CodMedicamento}`, { method: "DELETE" });

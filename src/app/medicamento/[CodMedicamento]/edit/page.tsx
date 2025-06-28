@@ -47,7 +47,7 @@ export default function EditarMedicamento() {
     fetchMedicamento();
   }, [CodMedicamento, router]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await fetch(`https://lab15-backend-coello.onrender.com/api/medicamentos/${CodMedicamento}`, {

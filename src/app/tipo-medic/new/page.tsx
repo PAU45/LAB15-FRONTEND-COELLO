@@ -10,7 +10,7 @@ export default function CrearTipoMedic() {
     descripcion: ""
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createTipoMedic(form);
     router.push('/tipo-medic');

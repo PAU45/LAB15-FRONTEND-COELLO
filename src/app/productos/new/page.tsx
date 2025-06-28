@@ -8,7 +8,7 @@ export default function CrearProducto() {
   const router = useRouter();
   const [form, setForm] = useState({ nomPro: "", precioProducto: "", stockProducto: "" });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createProducto({
       ...form,

@@ -19,7 +19,7 @@ export default function CrearMedicamento() {
     Marca: ""
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createMedicamento({
       ...form,

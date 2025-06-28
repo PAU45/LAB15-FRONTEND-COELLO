@@ -10,7 +10,7 @@ export default function CrearEspecialidad() {
     descripcionEsp: ""
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createEspecialidad(form);
     router.push('/especialidad');

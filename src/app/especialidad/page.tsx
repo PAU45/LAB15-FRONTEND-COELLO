@@ -4,13 +4,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function EspecialidadPage() {
-  const [especialidades, setEspecialidades] = useState([]);
-  const [error, setError] = useState(null);
+  type Especialidad = {
+    CodEspec: number;
+    descripcionEsp: string;
+  };
+  const [especialidades, setEspecialidades] = useState<Especialidad[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchEspecialidades = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/especialidad");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/especialidad");
       if (!res.ok) throw new Error("Error al obtener especialidades");
       const data = await res.json();
       setEspecialidades(data);
@@ -19,10 +23,10 @@ export default function EspecialidadPage() {
     }
   };
 
-  const eliminarEspecialidad = async (CodEspec) => {
+  const eliminarEspecialidad = async (CodEspec: number) => {
     if (!confirm("¿Estás seguro de eliminar esta especialidad?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/especialidad/${CodEspec}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/especialidad/${CodEspec}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Especialidad eliminada");
         fetchEspecialidades();

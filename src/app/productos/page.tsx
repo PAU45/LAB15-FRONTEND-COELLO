@@ -4,8 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ProductosPage() {
-  const [productos, setProductos] = useState([]);
-  const [error, setError] = useState(null); // Estado para manejar errores
+  type Producto = {
+    codProducto: number;
+    nomPro: string;
+    precioProducto: number;
+    stockProducto: number;
+  };
+  const [productos, setProductos] = useState<Producto[]>([]);
+  const [error, setError] = useState<string | null>(null); // Estado para manejar errores
   const router = useRouter();
 
   const fetchProductos = async () => {
@@ -22,7 +28,7 @@ export default function ProductosPage() {
     }
   };
 
-  const eliminarProducto = async (codProducto) => {
+  const eliminarProducto = async (codProducto: number) => {
     const confirmar = confirm("¿Estás seguro de eliminar este producto?");
     if (!confirmar) return;
 
@@ -100,7 +106,7 @@ export default function ProductosPage() {
           ))}
           {productos.length === 0 && (
             <tr>
-              <td colSpan="5" className="p-4 text-center">
+              <td colSpan={5} className="p-4 text-center">
                 No hay productos disponibles.
               </td>
             </tr>

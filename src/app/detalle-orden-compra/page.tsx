@@ -4,13 +4,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function DetalleOrdenCompraPage() {
-  const [detalles, setDetalles] = useState([]);
-  const [error, setError] = useState(null);
+  type DetalleOrdenCompra = {
+    NroOrdenC: number;
+    CodMedicamento: number;
+    descripcion?: string;
+    cantidad: number;
+    precio: number;
+    montouni?: number;
+  };
+  const [detalles, setDetalles] = useState<DetalleOrdenCompra[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchDetalles = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/detalle-orden-compra");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/detalle-orden-compra");
       if (!res.ok) throw new Error("Error al obtener detalles");
       const data = await res.json();
       setDetalles(data);
@@ -19,10 +27,10 @@ export default function DetalleOrdenCompraPage() {
     }
   };
 
-  const eliminarDetalle = async (NroOrdenC, CodMedicamento) => {
+  const eliminarDetalle = async (NroOrdenC: number, CodMedicamento: number) => {
     if (!confirm("¿Estás seguro de eliminar este detalle?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Detalle eliminado");
         fetchDetalles();

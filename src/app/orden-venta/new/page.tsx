@@ -12,7 +12,7 @@ export default function CrearOrdenVenta() {
     Situacion: ""
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createOrdenVenta(form);
     router.push('/orden-venta');

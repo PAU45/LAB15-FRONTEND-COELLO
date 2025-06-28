@@ -30,11 +30,12 @@ export default function EditarProducto() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchProducto(); // Carga los datos del producto al montar el componente
   }, [codProducto]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await fetch(`https://lab15-backend-coello.onrender.com/api/productos/${codProducto}`, {

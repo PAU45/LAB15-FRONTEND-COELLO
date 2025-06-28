@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TipoMedicPage() {
-  const [tipos, setTipos] = useState([]);
-  const [error, setError] = useState(null);
+  type TipoMedic = {
+    CodTipoMed: number;
+    descripcion: string;
+  };
+  const [tipos, setTipos] = useState<TipoMedic[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchTipos = async () => {
@@ -19,7 +23,7 @@ export default function TipoMedicPage() {
     }
   };
 
-  const eliminarTipo = async (CodTipoMed) => {
+  const eliminarTipo = async (CodTipoMed: number) => {
     if (!confirm("¿Estás seguro de eliminar este tipo?")) return;
     try {
       const res = await fetch(`https://lab15-backend-coello.onrender.com/api/tipo-medic/${CodTipoMed}`, { method: "DELETE" });

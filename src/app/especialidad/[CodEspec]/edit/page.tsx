@@ -14,7 +14,7 @@ export default function EditarEspecialidad() {
   useEffect(() => {
     const fetchEsp = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/especialidad/${CodEspec}`);
+        const res = await fetch(`https://lab15-backend-coello.onrender.com/api/especialidad/${CodEspec}`);
         if (!res.ok) throw new Error("Error al obtener la especialidad");
         const data = await res.json();
         setForm({
@@ -29,10 +29,10 @@ export default function EditarEspecialidad() {
     fetchEsp();
   }, [CodEspec, router]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/especialidad/${CodEspec}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/especialidad/${CodEspec}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -4,13 +4,19 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function DetalleOrdenVtaPage() {
-  const [detalles, setDetalles] = useState([]);
-  const [error, setError] = useState(null);
+  type DetalleOrdenVta = {
+    NroOrdenVta: number;
+    CodMedicamento: number;
+    cantidadRequerida: number;
+    descripcionMed?: string;
+  };
+  const [detalles, setDetalles] = useState<DetalleOrdenVta[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const fetchDetalles = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/detalle-orden-vta");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/detalle-orden-vta");
       if (!res.ok) throw new Error("Error al obtener detalles");
       const data = await res.json();
       setDetalles(data);
@@ -19,10 +25,10 @@ export default function DetalleOrdenVtaPage() {
     }
   };
 
-  const eliminarDetalle = async (NroOrdenVta, CodMedicamento) => {
+  const eliminarDetalle = async (NroOrdenVta: number, CodMedicamento: number) => {
     if (!confirm("¿Estás seguro de eliminar este detalle?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/detalle-orden-vta/${NroOrdenVta}/${CodMedicamento}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-vta/${NroOrdenVta}/${CodMedicamento}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Detalle eliminado");
         fetchDetalles();
