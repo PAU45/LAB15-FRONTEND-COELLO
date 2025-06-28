@@ -11,7 +11,7 @@ async function safeJson(res) {
 }
 
 // PRODUCTOS
-const BASE_URL_PRODUCTOS = 'http://localhost:3001/api/productos';
+const BASE_URL_PRODUCTOS = 'https://lab15-backend-coello.onrender.com/api/productos';
 
 export async function getProductos() {
   const res = await fetch(BASE_URL_PRODUCTOS);
@@ -43,7 +43,7 @@ export async function deleteProducto(id) {
 }
 
 // MEDICAMENTO
-const BASE_URL_MEDICAMENTO = 'http://localhost:3001/api/medicamentos';
+const BASE_URL_MEDICAMENTO = 'https://lab15-backend-coello.onrender.com/api/medicamentos';
 
 export async function getMedicamentos() {
   const res = await fetch(BASE_URL_MEDICAMENTO);
@@ -75,7 +75,7 @@ export async function deleteMedicamento(id) {
 }
 
 // DETALLE ORDEN COMPRA
-const BASE_URL_DETALLE_OC = 'http://localhost:3001/api/detalle-orden-compra';
+const BASE_URL_DETALLE_OC = 'https://lab15-backend-coello.onrender.com/api/detalle-orden-compra';
 
 export async function getDetalleOrdenCompra() {
   const res = await fetch(BASE_URL_DETALLE_OC);
@@ -107,7 +107,7 @@ export async function deleteDetalleOrdenCompra(nro, cod) {
 }
 
 // ORDEN COMPRA
-const BASE_URL_ORDEN_COMPRA = 'http://localhost:3001/api/orden-compra';
+const BASE_URL_ORDEN_COMPRA = 'https://lab15-backend-coello.onrender.com/api/orden-compra';
 
 export async function getOrdenesCompra() {
   const res = await fetch(BASE_URL_ORDEN_COMPRA);
@@ -139,7 +139,7 @@ export async function deleteOrdenCompra(id) {
 }
 
 // LABORATORIO
-const BASE_URL_LABORATORIO = 'http://localhost:3001/api/laboratorio';
+const BASE_URL_LABORATORIO = 'https://lab15-backend-coello.onrender.com/api/laboratorio';
 
 export async function getLaboratorios() {
   const res = await fetch(BASE_URL_LABORATORIO);
@@ -171,7 +171,7 @@ export async function deleteLaboratorio(id) {
 }
 
 // DETALLE ORDEN VENTA
-const BASE_URL_DETALLE_OV = 'http://localhost:3001/api/detalle-orden-vta';
+const BASE_URL_DETALLE_OV = 'https://lab15-backend-coello.onrender.com/api/detalle-orden-vta';
 
 export async function getDetalleOrdenVta() {
   const res = await fetch(BASE_URL_DETALLE_OV);
@@ -203,7 +203,7 @@ export async function deleteDetalleOrdenVta(nro, cod) {
 }
 
 // ORDEN VENTA
-const BASE_URL_ORDEN_VENTA = 'http://localhost:3001/api/orden-venta';
+const BASE_URL_ORDEN_VENTA = 'https://lab15-backend-coello.onrender.com/api/orden-venta';
 
 export async function getOrdenesVenta() {
   const res = await fetch(BASE_URL_ORDEN_VENTA);
@@ -235,7 +235,7 @@ export async function deleteOrdenVenta(id) {
 }
 
 // ESPECIALIDAD
-const BASE_URL_ESPECIALIDAD = 'http://localhost:3001/api/especialidad';
+const BASE_URL_ESPECIALIDAD = 'https://lab15-backend-coello.onrender.com/api/especialidad';
 
 export async function getEspecialidades() {
   const res = await fetch(BASE_URL_ESPECIALIDAD);
@@ -267,7 +267,7 @@ export async function deleteEspecialidad(id) {
 }
 
 // TIPO MEDIC
-const BASE_URL_TIPO_MEDIC = 'http://localhost:3001/api/tipo-medic';
+const BASE_URL_TIPO_MEDIC = 'https://lab15-backend-coello.onrender.com/api/tipo-medic';
 
 export async function getTiposMedic() {
   const res = await fetch(BASE_URL_TIPO_MEDIC);

@@ -23,7 +23,7 @@ export default function EditarMedicamento() {
   useEffect(() => {
     const fetchMedicamento = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/medicamentos/${CodMedicamento}`);
+        const res = await fetch(`https://lab15-backend-coello.onrender.com/api/medicamentos/${CodMedicamento}`);
         if (!res.ok) throw new Error("Error al obtener el medicamento");
         const data = await res.json();
         setForm({
@@ -50,7 +50,7 @@ export default function EditarMedicamento() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/medicamentos/${CodMedicamento}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/medicamentos/${CodMedicamento}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

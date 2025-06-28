@@ -10,7 +10,7 @@ export default function ProductosPage() {
 
   const fetchProductos = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/productos");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/productos");
       if (!res.ok) {
         throw new Error("Error al obtener productos");
       }
@@ -27,7 +27,7 @@ export default function ProductosPage() {
     if (!confirmar) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/api/productos/${codProducto}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/productos/${codProducto}`, {
         method: "DELETE",
       });
 

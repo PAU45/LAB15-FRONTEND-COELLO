@@ -19,7 +19,7 @@ export default function EditarTipoMedic() {
     if (!CodTipoMed) return;
     const fetchTipo = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/tipo-medic/${CodTipoMed}`);
+        const res = await fetch(`https://lab15-backend-coello.onrender.com/api/tipo-medic/${CodTipoMed}`);
         if (!res.ok) throw new Error("Error al obtener el tipo");
         const data = await res.json();
         setForm({
@@ -38,7 +38,7 @@ export default function EditarTipoMedic() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/tipo-medic/${CodTipoMed}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/tipo-medic/${CodTipoMed}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

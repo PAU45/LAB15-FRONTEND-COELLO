@@ -12,7 +12,7 @@ export default function EditarProducto() {
   // Función para obtener los datos del producto desde la API
   const fetchProducto = async () => {
     try {
-      const res = await fetch(`http://localhost:3001/api/productos/${codProducto}`);
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/productos/${codProducto}`);
       if (!res.ok) {
         throw new Error("Error al obtener el producto");
       }
@@ -37,7 +37,7 @@ export default function EditarProducto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/productos/${codProducto}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/productos/${codProducto}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

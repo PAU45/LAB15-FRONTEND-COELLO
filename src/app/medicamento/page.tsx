@@ -10,7 +10,7 @@ export default function MedicamentoPage() {
 
   const fetchMedicamentos = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/medicamentos");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/medicamentos");
       if (!res.ok) throw new Error("Error al obtener medicamentos");
       const data = await res.json();
       setMedicamentos(data);
@@ -22,7 +22,7 @@ export default function MedicamentoPage() {
   const eliminarMedicamento = async (CodMedicamento) => {
     if (!confirm("¿Estás seguro de eliminar este medicamento?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/medicamentos/${CodMedicamento}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/medicamentos/${CodMedicamento}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Medicamento eliminado");
         fetchMedicamentos();

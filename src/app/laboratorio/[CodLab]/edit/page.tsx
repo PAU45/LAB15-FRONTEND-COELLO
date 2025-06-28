@@ -18,7 +18,7 @@ export default function EditarLaboratorio() {
   useEffect(() => {
     const fetchLab = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/laboratorio/${CodLab}`);
+        const res = await fetch(`https://lab15-backend-coello.onrender.com/api/laboratorio/${CodLab}`);
         if (!res.ok) throw new Error("Error al obtener el laboratorio");
         const data = await res.json();
         setForm({
@@ -40,7 +40,7 @@ export default function EditarLaboratorio() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/laboratorio/${CodLab}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/laboratorio/${CodLab}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

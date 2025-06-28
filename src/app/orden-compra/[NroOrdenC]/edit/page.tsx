@@ -18,7 +18,7 @@ export default function EditarOrdenCompra() {
   useEffect(() => {
     const fetchOrden = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/orden-compra/${NroOrdenC}`);
+        const res = await fetch(`https://lab15-backend-coello.onrender.com/api/orden-compra/${NroOrdenC}`);
         if (!res.ok) throw new Error("Error al obtener la orden");
         const data = await res.json();
         setForm({
@@ -40,7 +40,7 @@ export default function EditarOrdenCompra() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3001/api/orden-compra/${NroOrdenC}`, {
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/orden-compra/${NroOrdenC}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

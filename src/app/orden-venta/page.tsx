@@ -10,7 +10,7 @@ export default function OrdenVentaPage() {
 
   const fetchOrdenes = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/orden-venta");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/orden-venta");
       if (!res.ok) throw new Error("Error al obtener órdenes");
       const data = await res.json();
       setOrdenes(data);
@@ -22,7 +22,7 @@ export default function OrdenVentaPage() {
   const eliminarOrden = async (NroOrdenVta) => {
     if (!confirm("¿Estás seguro de eliminar esta orden?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/orden-venta/${NroOrdenVta}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/orden-venta/${NroOrdenVta}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Orden eliminada");
         fetchOrdenes();

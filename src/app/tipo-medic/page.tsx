@@ -10,7 +10,7 @@ export default function TipoMedicPage() {
 
   const fetchTipos = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/tipo-medic");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/tipo-medic");
       if (!res.ok) throw new Error("Error al obtener tipos");
       const data = await res.json();
       setTipos(data);
@@ -22,7 +22,7 @@ export default function TipoMedicPage() {
   const eliminarTipo = async (CodTipoMed) => {
     if (!confirm("¿Estás seguro de eliminar este tipo?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/tipo-medic/${CodTipoMed}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/tipo-medic/${CodTipoMed}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Tipo eliminado");
         fetchTipos();

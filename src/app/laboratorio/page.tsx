@@ -10,7 +10,7 @@ export default function LaboratorioPage() {
 
   const fetchLaboratorios = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/laboratorio");
+      const res = await fetch("https://lab15-backend-coello.onrender.com/api/laboratorio");
       if (!res.ok) throw new Error("Error al obtener laboratorios");
       const data = await res.json();
       setLaboratorios(data);
@@ -22,7 +22,7 @@ export default function LaboratorioPage() {
   const eliminarLaboratorio = async (CodLab) => {
     if (!confirm("¿Estás seguro de eliminar este laboratorio?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/laboratorio/${CodLab}`, { method: "DELETE" });
+      const res = await fetch(`https://lab15-backend-coello.onrender.com/api/laboratorio/${CodLab}`, { method: "DELETE" });
       if (res.status === 204) {
         alert("Laboratorio eliminado");
         fetchLaboratorios();
