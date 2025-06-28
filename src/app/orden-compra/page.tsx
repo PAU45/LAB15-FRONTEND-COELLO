@@ -77,7 +77,11 @@ export default function OrdenCompraPage() {
                   <td className="p-3">{ord.NroOrdenC}</td>
                   <td className="p-3">{ord.fechaEmision?.slice(0, 10)}</td>
                   <td className="p-3">{ord.Situacion}</td>
-                  <td className="p-3">S/ {ord.Total?.toFixed(2)}</td>
+                  <td className="p-3">
+                    {typeof ord.Total === 'number' && !isNaN(ord.Total) && ord.Total > 0
+                      ? `S/ ${ord.Total.toFixed(2)}`
+                      : ''}
+                  </td>
                   <td className="p-3 flex flex-col sm:flex-row gap-2 justify-center">
                     <button
                       onClick={() => router.push(`/orden-compra/${ord.NroOrdenC}/edit`)}
