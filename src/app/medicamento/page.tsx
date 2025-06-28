@@ -94,8 +94,8 @@ export default function MedicamentoPage() {
                   <td className="p-3">{med.fechaVencimiento?.slice(0, 10)}</td>
                   <td className="p-3">{med.Presentacion}</td>
                   <td className="p-3">{med.stock}</td>
-                  <td className="p-3">S/ {typeof med.precioVentaUni === 'number' && !isNaN(med.precioVentaUni) ? med.precioVentaUni.toFixed(2) : '0.00'}</td>
-                  <td className="p-3">S/ {typeof med.precioVentaPres === 'number' && !isNaN(med.precioVentaPres) ? med.precioVentaPres.toFixed(2) : '0.00'}</td>
+                  <td className="p-3">{(med.precioVentaUni !== undefined && med.precioVentaUni !== null && !isNaN(Number(med.precioVentaUni))) ? `S/ ${Number(med.precioVentaUni).toFixed(2)}` : ''}</td>
+                  <td className="p-3">{(med.precioVentaPres !== undefined && med.precioVentaPres !== null && !isNaN(Number(med.precioVentaPres))) ? `S/ ${Number(med.precioVentaPres).toFixed(2)}` : ''}</td>
                   <td className="p-3">{med.CodTipoMed}</td>
                   <td className="p-3">{med.CodEspec}</td>
                   <td className="p-3">{med.Marca}</td>
