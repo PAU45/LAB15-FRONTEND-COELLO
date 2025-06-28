@@ -46,8 +46,8 @@ export default function EditarDetalleOrdenCompra() {
           cantidad: form.cantidad === "" ? 0 : parseInt(form.cantidad),
           precio: form.precio === "" ? 0 : parseFloat(form.precio),
           montouni: form.montouni === "" ? 0 : parseFloat(form.montouni),
-          NroOrdenC: NroOrdenC === undefined || NroOrdenC === null || NroOrdenC === "" ? null : parseInt(NroOrdenC),
-          CodMedicamento: CodMedicamento === undefined || CodMedicamento === null || CodMedicamento === "" ? null : parseInt(CodMedicamento)
+          NroOrdenC: Array.isArray(NroOrdenC) ? parseInt(NroOrdenC[0]) : (NroOrdenC === undefined || NroOrdenC === null || NroOrdenC === "" ? null : parseInt(NroOrdenC)),
+          CodMedicamento: Array.isArray(CodMedicamento) ? parseInt(CodMedicamento[0]) : (CodMedicamento === undefined || CodMedicamento === null || CodMedicamento === "" ? null : parseInt(CodMedicamento))
         }),
       });
       if (res.ok) {
