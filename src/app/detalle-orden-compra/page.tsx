@@ -83,7 +83,7 @@ export default function DetalleOrdenCompraPage() {
                   <td className="p-3 border-b border-gray-100 flex gap-2">
                     <button
                       className="px-3 py-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg font-semibold shadow hover:scale-105 hover:shadow-lg transition-all"
-                      onClick={() => router.push(`/detalle-orden-compra/${det.NroOrdenC}-${det.CodMedicamento}/edit`)}
+                      onClick={() => router.push(`/detalle-orden-compra/${det.NroOrdenC}/${det.CodMedicamento}/edit`)}
                     >
                       Editar
                     </button>
