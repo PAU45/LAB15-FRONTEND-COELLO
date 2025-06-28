@@ -72,6 +72,22 @@ export default function EditarDetalleOrdenVta() {
         <h1 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-6 text-center drop-shadow-lg">Editar Detalle de Orden de Venta</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
+            <label className="block text-gray-700 font-semibold mb-1">Nro Orden</label>
+            <input
+              className="w-full px-4 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-600 focus:outline-none shadow-sm"
+              value={NroOrdenVta}
+              disabled
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Cod Medicamento</label>
+            <input
+              className="w-full px-4 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-600 focus:outline-none shadow-sm"
+              value={CodMedicamento}
+              disabled
+            />
+          </div>
+          <div>
             <label className="block text-gray-700 font-semibold mb-1">Descripción</label>
             <input
               className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all shadow-sm bg-white"
