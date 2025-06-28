@@ -26,7 +26,15 @@ export default function MedicamentoPage() {
       const res = await fetch("https://lab15-backend-coello.onrender.com/api/medicamentos");
       if (!res.ok) throw new Error("Error al obtener medicamentos");
       const data = await res.json();
-      setMedicamentos(data);
+
+      // Convertir valores de precioVentaUni y precioVentaPres a números
+      const medicamentosProcesados = data.map((med: any) => ({
+        ...med,
+        precioVentaUni: med.precioVentaUni ? parseFloat(med.precioVentaUni) : null,
+        precioVentaPres: med.precioVentaPres ? parseFloat(med.precioVentaPres) : null,
+      }));
+
+      setMedicamentos(medicamentosProcesados);
     } catch {
       setError("No se pudieron cargar los medicamentos. Intenta nuevamente.");
     }
