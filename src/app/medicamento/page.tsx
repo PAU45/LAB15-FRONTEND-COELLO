@@ -14,7 +14,7 @@ export default function MedicamentoPage() {
       if (!res.ok) throw new Error("Error al obtener medicamentos");
       const data = await res.json();
       setMedicamentos(data);
-    } catch (error) {
+    } catch {
       setError("No se pudieron cargar los medicamentos. Intenta nuevamente.");
     }
   };
