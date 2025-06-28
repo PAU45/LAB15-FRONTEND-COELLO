@@ -8,8 +8,9 @@ export default function OrdenCompraPage() {
     NroOrdenC: number;
     fechaEmision?: string;
     Situacion?: string;
-    Total?: number;
+    Total?: number | null; // Asegúrate de incluir `null` como posible valor
   };
+
   const [ordenes, setOrdenes] = useState<OrdenCompra[]>([]);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -19,7 +20,14 @@ export default function OrdenCompraPage() {
       const res = await fetch("https://lab15-backend-coello.onrender.com/api/orden-compra");
       if (!res.ok) throw new Error("Error al obtener órdenes");
       const data = await res.json();
-      setOrdenes(data);
+
+      // Convertir valores de Total a números
+      const ordenesProcesadas: OrdenCompra[] = data.map((ord: OrdenCompra) => ({
+        ...ord,
+        Total: ord.Total ? parseFloat(String(ord.Total)) : null,
+      }));
+
+      setOrdenes(ordenesProcesadas);
     } catch {
       setError("No se pudieron cargar las órdenes. Intenta nuevamente.");
     }
@@ -41,7 +49,9 @@ export default function OrdenCompraPage() {
     }
   };
 
-  useEffect(() => { fetchOrdenes(); }, []);
+  useEffect(() => {
+    fetchOrdenes();
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
