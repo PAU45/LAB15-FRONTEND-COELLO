@@ -79,7 +79,7 @@ export default function DetalleOrdenCompraPage() {
                   <td className="p-3 border-b border-gray-100">{det.NroOrdenC}</td>
                   <td className="p-3 border-b border-gray-100">{det.CodMedicamento}</td>
                   <td className="p-3 border-b border-gray-100">{det.cantidad}</td>
-                  <td className="p-3 border-b border-gray-100">{det.precio}</td>
+                  <td className="p-3 border-b border-gray-100">{(det.precio !== undefined && det.precio !== null && !isNaN(Number(det.precio))) ? `S/ ${Number(det.precio).toFixed(2)}` : ''}</td>
                   <td className="p-3 border-b border-gray-100 flex gap-2">
                     <button
                       className="px-3 py-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg font-semibold shadow hover:scale-105 hover:shadow-lg transition-all"
