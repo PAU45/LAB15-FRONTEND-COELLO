@@ -21,7 +21,7 @@ export default function OrdenCompraPage() {
       if (!res.ok) throw new Error("Error al obtener órdenes");
       const data = await res.json();
 
-      // Convertir valores de Total a números
+      // Convertir valores de Total a números válidos
       const ordenesProcesadas: OrdenCompra[] = data.map((ord: OrdenCompra) => ({
         ...ord,
         Total: ord.Total ? parseFloat(String(ord.Total)) : null,
