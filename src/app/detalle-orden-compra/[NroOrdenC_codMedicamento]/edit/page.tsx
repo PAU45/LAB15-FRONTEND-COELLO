@@ -60,21 +60,55 @@ export default function EditarDetalleOrdenCompra() {
     }
   };
 
-  if (loading) return <p>Cargando...</p>;
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-[40vh]">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <span className="ml-4 text-lg text-blue-700 font-semibold">Cargando...</span>
+    </div>
+  );
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4 p-4">
-      <input className="border p-2 w-full" placeholder="Descripción" value={form.descripcion}
-        onChange={e => setForm({ ...form, descripcion: e.target.value })} />
-      <input className="border p-2 w-full" placeholder="Cantidad" type="number" value={form.cantidad}
-        onChange={e => setForm({ ...form, cantidad: e.target.value })} />
-      <input className="border p-2 w-full" placeholder="Precio" type="number" step="0.01" value={form.precio}
-        onChange={e => setForm({ ...form, precio: e.target.value })} />
-      <input className="border p-2 w-full" placeholder="Monto Unitario" type="number" step="0.01" value={form.montouni}
-        onChange={e => setForm({ ...form, montouni: e.target.value })} />
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Actualizar
-      </button>
-    </form>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
+      <div className="bg-white/90 shadow-xl rounded-2xl p-8 w-full max-w-lg border border-gray-200 mt-8">
+        <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 drop-shadow mb-6 text-center">Editar Detalle Orden de Compra</h2>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            placeholder="Descripción"
+            value={form.descripcion}
+            onChange={e => setForm({ ...form, descripcion: e.target.value })}
+          />
+          <input
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            placeholder="Cantidad"
+            type="number"
+            value={form.cantidad}
+            onChange={e => setForm({ ...form, cantidad: e.target.value })}
+          />
+          <input
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            placeholder="Precio"
+            type="number"
+            step="0.01"
+            value={form.precio}
+            onChange={e => setForm({ ...form, precio: e.target.value })}
+          />
+          <input
+            className="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            placeholder="Monto Unitario"
+            type="number"
+            step="0.01"
+            value={form.montouni}
+            onChange={e => setForm({ ...form, montouni: e.target.value })}
+          />
+          <button
+            type="submit"
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-bold shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200"
+          >
+            Actualizar
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

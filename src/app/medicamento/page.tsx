@@ -51,58 +51,80 @@ export default function MedicamentoPage() {
   useEffect(() => { fetchMedicamentos(); }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Lista de Medicamentos</h1>
-      <button className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-        onClick={() => router.push('/medicamento/new')}>+ Agregar Medicamento</button>
-      {error && <div className="mb-4 p-4 bg-red-100 text-red-700 rounded">{error}</div>}
-      <div className="overflow-x-auto">
-        <table className="w-full border border-gray-300">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="p-2 border">Código</th>
-              <th className="p-2 border">Descripción</th>
-              <th className="p-2 border">F. Fabricación</th>
-              <th className="p-2 border">F. Vencimiento</th>
-              <th className="p-2 border">Presentación</th>
-              <th className="p-2 border">Stock</th>
-              <th className="p-2 border">Precio Unitario</th>
-              <th className="p-2 border">Precio Presentación</th>
-              <th className="p-2 border">CodTipoMed</th>
-              <th className="p-2 border">CodEspec</th>
-              <th className="p-2 border">Marca</th>
-              <th className="p-2 border">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {medicamentos.map((med) => (
-              <tr key={med.CodMedicamento}>
-                <td className="p-2 border text-center">{med.CodMedicamento}</td>
-                <td className="p-2 border">{med.descripcionMed}</td>
-                <td className="p-2 border">{med.fechaFabricacion?.slice(0, 10)}</td>
-                <td className="p-2 border">{med.fechaVencimiento?.slice(0, 10)}</td>
-                <td className="p-2 border">{med.Presentacion}</td>
-                <td className="p-2 border">{med.stock}</td>
-                <td className="p-2 border">{med.precioVentaUni}</td>
-                <td className="p-2 border">{med.precioVentaPres}</td>
-                <td className="p-2 border">{med.CodTipoMed}</td>
-                <td className="p-2 border">{med.CodEspec}</td>
-                <td className="p-2 border">{med.Marca}</td>
-                <td className="p-2 border space-x-2">
-                  <button onClick={() => router.push(`/medicamento/${med.CodMedicamento}/edit`)}
-                    className="px-2 py-1 bg-yellow-400 rounded hover:bg-yellow-500">Editar</button>
-                  <button onClick={() => eliminarMedicamento(med.CodMedicamento)}
-                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">Eliminar</button>
-                </td>
-              </tr>
-            ))}
-            {medicamentos.length === 0 && (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
+      <div className="bg-white/90 shadow-xl rounded-2xl p-8 w-full max-w-6xl border border-gray-200 mt-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 drop-shadow-lg">Lista de Medicamentos</h1>
+          <button
+            className="px-5 py-2 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200"
+            onClick={() => router.push('/medicamento/new')}
+          >
+            + Agregar Medicamento
+          </button>
+        </div>
+        {error && (
+          <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-xl border border-red-200 shadow">
+            {error}
+          </div>
+        )}
+        <div className="overflow-x-auto rounded-xl shadow">
+          <table className="w-full text-center bg-white rounded-xl">
+            <thead className="bg-gradient-to-r from-blue-100 to-purple-100">
               <tr>
-                <td colSpan={12} className="p-4 text-center">No hay medicamentos disponibles.</td>
+                <th className="p-3 font-bold text-gray-700">Código</th>
+                <th className="p-3 font-bold text-gray-700">Descripción</th>
+                <th className="p-3 font-bold text-gray-700">F. Fabricación</th>
+                <th className="p-3 font-bold text-gray-700">F. Vencimiento</th>
+                <th className="p-3 font-bold text-gray-700">Presentación</th>
+                <th className="p-3 font-bold text-gray-700">Stock</th>
+                <th className="p-3 font-bold text-gray-700">Precio Unitario</th>
+                <th className="p-3 font-bold text-gray-700">Precio Presentación</th>
+                <th className="p-3 font-bold text-gray-700">CodTipoMed</th>
+                <th className="p-3 font-bold text-gray-700">CodEspec</th>
+                <th className="p-3 font-bold text-gray-700">Marca</th>
+                <th className="p-3 font-bold text-gray-700">Acciones</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {medicamentos.map((med) => (
+                <tr key={med.CodMedicamento} className="border-b hover:bg-blue-50 transition">
+                  <td className="p-3">{med.CodMedicamento}</td>
+                  <td className="p-3">{med.descripcionMed}</td>
+                  <td className="p-3">{med.fechaFabricacion?.slice(0, 10)}</td>
+                  <td className="p-3">{med.fechaVencimiento?.slice(0, 10)}</td>
+                  <td className="p-3">{med.Presentacion}</td>
+                  <td className="p-3">{med.stock}</td>
+                  <td className="p-3">S/ {med.precioVentaUni?.toFixed(2)}</td>
+                  <td className="p-3">S/ {med.precioVentaPres?.toFixed(2)}</td>
+                  <td className="p-3">{med.CodTipoMed}</td>
+                  <td className="p-3">{med.CodEspec}</td>
+                  <td className="p-3">{med.Marca}</td>
+                  <td className="p-3 flex flex-col sm:flex-row gap-2 justify-center">
+                    <button
+                      onClick={() => router.push(`/medicamento/${med.CodMedicamento}/edit`)}
+                      className="px-3 py-1 bg-yellow-400 text-white rounded-lg font-semibold hover:bg-yellow-500 shadow"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => eliminarMedicamento(med.CodMedicamento)}
+                      className="px-3 py-1 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 shadow"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              {medicamentos.length === 0 && (
+                <tr>
+                  <td colSpan={12} className="p-6 text-center text-gray-500">
+                    No hay medicamentos disponibles.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

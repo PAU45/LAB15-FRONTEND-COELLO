@@ -46,43 +46,65 @@ export default function DetalleOrdenCompraPage() {
   useEffect(() => { fetchDetalles(); }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Lista de Detalles de Orden de Compra</h1>
-      <button className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-        onClick={() => router.push('/detalle-orden-compra/new')}>+ Agregar Detalle</button>
-      {error && <div className="mb-4 p-4 bg-red-100 text-red-700 rounded">{error}</div>}
-      <table className="w-full border border-gray-300">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="p-2 border">Nro Orden</th>
-            <th className="p-2 border">Cod Medicamento</th>
-            <th className="p-2 border">Cantidad</th>
-            <th className="p-2 border">Precio</th>
-            <th className="p-2 border">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {detalles.map((det) => (
-            <tr key={det.NroOrdenC + "-" + det.CodMedicamento}>
-              <td className="p-2 border">{det.NroOrdenC}</td>
-              <td className="p-2 border">{det.CodMedicamento}</td>
-              <td className="p-2 border">{det.cantidad}</td>
-              <td className="p-2 border">{det.precio}</td>
-              <td className="p-2 border space-x-2">
-                <button onClick={() => router.push(`/detalle-orden-compra/${det.NroOrdenC}-${det.CodMedicamento}/edit`)}
-                  className="px-2 py-1 bg-yellow-400 rounded hover:bg-yellow-500">Editar</button>
-                <button onClick={() => eliminarDetalle(det.NroOrdenC, det.CodMedicamento)}
-                  className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">Eliminar</button>
-              </td>
-            </tr>
-          ))}
-          {detalles.length === 0 && (
-            <tr>
-              <td colSpan={5} className="p-4 text-center">No hay detalles disponibles.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
+      <div className="bg-white/90 shadow-xl rounded-2xl p-8 w-full max-w-4xl border border-gray-200 mt-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 drop-shadow-lg">Lista de Detalles de Orden de Compra</h1>
+          <button
+            className="px-5 py-2 bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200"
+            onClick={() => router.push('/detalle-orden-compra/new')}
+          >
+            + Agregar Detalle
+          </button>
+        </div>
+        {error && (
+          <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-xl border border-red-200 shadow">
+            {error}
+          </div>
+        )}
+        <div className="overflow-x-auto rounded-xl shadow">
+          <table className="w-full text-sm text-gray-700 border border-gray-200 bg-white">
+            <thead className="bg-gradient-to-r from-blue-100 to-purple-100">
+              <tr>
+                <th className="p-3 font-bold text-left border-b border-gray-200">Nro Orden</th>
+                <th className="p-3 font-bold text-left border-b border-gray-200">Cod Medicamento</th>
+                <th className="p-3 font-bold text-left border-b border-gray-200">Cantidad</th>
+                <th className="p-3 font-bold text-left border-b border-gray-200">Precio</th>
+                <th className="p-3 font-bold text-left border-b border-gray-200">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {detalles.map((det) => (
+                <tr key={det.NroOrdenC + "-" + det.CodMedicamento} className="hover:bg-purple-50 transition-colors">
+                  <td className="p-3 border-b border-gray-100">{det.NroOrdenC}</td>
+                  <td className="p-3 border-b border-gray-100">{det.CodMedicamento}</td>
+                  <td className="p-3 border-b border-gray-100">{det.cantidad}</td>
+                  <td className="p-3 border-b border-gray-100">{det.precio}</td>
+                  <td className="p-3 border-b border-gray-100 flex gap-2">
+                    <button
+                      className="px-3 py-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg font-semibold shadow hover:scale-105 hover:shadow-lg transition-all"
+                      onClick={() => router.push(`/detalle-orden-compra/${det.NroOrdenC}-${det.CodMedicamento}/edit`)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="px-3 py-1 bg-gradient-to-r from-red-400 to-red-600 text-white rounded-lg font-semibold shadow hover:scale-105 hover:shadow-lg transition-all"
+                      onClick={() => eliminarDetalle(det.NroOrdenC, det.CodMedicamento)}
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              {detalles.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="text-center py-6 text-gray-400">No hay detalles disponibles.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
