@@ -25,7 +25,10 @@ export default function EditarDetalleOrdenCompra() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!NroOrdenC || !CodMedicamento) return;
+    if (!NroOrdenC || !CodMedicamento) {
+      setLoading(false);
+      return;
+    }
     const fetchDetalle = async () => {
       try {
         const res = await fetch(`https://lab15-backend-coello.onrender.com/api/detalle-orden-compra/${NroOrdenC}/${CodMedicamento}`);
@@ -39,6 +42,7 @@ export default function EditarDetalleOrdenCompra() {
         });
         setLoading(false);
       } catch {
+        setLoading(false);
         alert("No se pudo cargar el detalle.");
         router.push("/detalle-orden-compra");
       }
@@ -53,12 +57,10 @@ export default function EditarDetalleOrdenCompra() {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...form,
+          descripcion: form.descripcion,
           cantidad: form.cantidad === "" ? 0 : parseInt(form.cantidad),
           precio: form.precio === "" ? 0 : parseFloat(form.precio),
-          montouni: form.montouni === "" ? 0 : parseFloat(form.montouni),
-          NroOrdenC: NroOrdenC === undefined || NroOrdenC === null || NroOrdenC === "" ? null : parseInt(NroOrdenC),
-          CodMedicamento: CodMedicamento === undefined || CodMedicamento === null || CodMedicamento === "" ? null : parseInt(CodMedicamento)
+          montouni: form.montouni === "" ? 0 : parseFloat(form.montouni)
         }),
       });
       if (res.ok) {
