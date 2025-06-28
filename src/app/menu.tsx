@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 
 const menuItems = [
-  { label: "Productos", color: "from-blue-400 to-blue-600", path: "/productos", icon: "📦" },
+  
   { label: "Medicamentos", color: "from-green-400 to-green-600", path: "/medicamento", icon: "💊" },
   { label: "Laboratorios", color: "from-yellow-400 to-yellow-600", path: "/laboratorio", icon: "🏭" },
   { label: "Especialidades", color: "from-pink-400 to-pink-600", path: "/especialidad", icon: "🩺" },
