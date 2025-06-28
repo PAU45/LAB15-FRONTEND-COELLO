@@ -1,0 +1,1 @@
+Eliminando la carpeta conflictiva de rutas dinámicas antiguas para evitar el error de slug duplicado en Next.js.
