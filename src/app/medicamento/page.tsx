@@ -17,6 +17,7 @@ export default function MedicamentoPage() {
     CodEspec?: number;
     Marca?: string;
   };
+
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([]);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -25,13 +26,13 @@ export default function MedicamentoPage() {
     try {
       const res = await fetch("https://lab15-backend-coello.onrender.com/api/medicamentos");
       if (!res.ok) throw new Error("Error al obtener medicamentos");
-      const data = await res.json();
+      const data: Medicamento[] = await res.json();
 
       // Convertir valores de precioVentaUni y precioVentaPres a números
-      const medicamentosProcesados = data.map((med: any) => ({
+      const medicamentosProcesados = data.map((med) => ({
         ...med,
-        precioVentaUni: med.precioVentaUni ? parseFloat(med.precioVentaUni) : null,
-        precioVentaPres: med.precioVentaPres ? parseFloat(med.precioVentaPres) : null,
+        precioVentaUni: med.precioVentaUni ? parseFloat(String(med.precioVentaUni)) : null,
+        precioVentaPres: med.precioVentaPres ? parseFloat(String(med.precioVentaPres)) : null,
       }));
 
       setMedicamentos(medicamentosProcesados);
@@ -56,7 +57,9 @@ export default function MedicamentoPage() {
     }
   };
 
-  useEffect(() => { fetchMedicamentos(); }, []);
+  useEffect(() => {
+    fetchMedicamentos();
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
